@@ -1,0 +1,57 @@
+---
+import { site } from '../data/site';
+import '../styles/global.css';
+const title = '321 Notary, LLC | Notary, Titles & Registration in Kane, PA';
+const description = 'Notary public, vehicle titles, plates and registration services in Kane, Pennsylvania. Call 321 Notary, LLC to schedule an appointment.';
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
+const jsonLd = {
+  '@context': 'https://schema.org', '@type': 'Notary', name: site.name,
+  ...(Astro.site ? { url: Astro.site.href } : {}), telephone: '+18148379448', email: site.email,
+  address: { '@type': 'PostalAddress', streetAddress: site.address, addressLocality: site.city, addressRegion: site.state, postalCode: site.zip, addressCountry: 'US' },
+  openingHoursSpecification: [
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Friday'], opens: '10:00', closes: '17:30' },
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Saturday', opens: '09:00', closes: '12:00' },
+  ],
+};
+const faqs = [
+  ['Are appointments required?', 'Please call ahead and schedule an appointment.'],
+  ['What are your business hours?', 'Monday through Wednesday and Friday, 10:00 AM–5:30 PM; Saturday, 9:00 AM–12:00 PM. Closed Thursday and Sunday.'],
+  ['Where are you located?', '132 Hubert Run Rd, Kane, PA 16735.'],
+  ['What services do you provide?', 'Notary public services, vehicle title work, license plates, registrations and instant registration renewals, as well as boat, ATV and snowmobile services. The office is an Online PennDOT Agent, PFBC Agent and DCNR Dealer. Call to confirm your specific transaction.'],
+  ['What should I bring?', 'Documentation depends on your transaction. Please call ahead to ask what you will need to bring.'],
+  ['How can I contact you?', 'Call (814) 837-9448 or email notaryoffice@verizon.net.'],
+];
+// TODO: Owner and qualified counsel should review any required Pennsylvania non-attorney notary disclaimer and regulatory details before launch.
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title><meta name="description" content={description} />
+  {canonical && <link rel="canonical" href={canonical} />}
+  {import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION && <meta name="google-site-verification" content={import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION} />}
+  <meta property="og:type" content="website" /><meta property="og:title" content={title} /><meta property="og:description" content={description} />{canonical && <meta property="og:url" content={canonical} />}
+  <meta name="twitter:card" content="summary" /><meta name="theme-color" content="#162d62" />
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd).replace(/</g, '\u003c')} />
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="header"><div class="wrap header-inner">
+  <a class="wordmark" href="#top" aria-label="321 Notary, LLC home"><span class="wordmark-number">321</span><span class="wordmark-name">NOTARY <small>LLC</small><em>KANE, PENNSYLVANIA</em></span></a>
+  <nav aria-label="Main navigation"><a href="#services">Services</a><a href="#visit">Before your visit</a><a href="#about">About</a><a href="#faq">FAQs</a><a href="#contact">Contact</a></nav>
+  <a class="header-phone" href={site.phoneLink}><span>CALL TO SCHEDULE</span>{site.phone} <b aria-hidden="true">↗</b></a>
+</div></header>
+<main id="main">
+<section class="hero wrap" id="top"><div class="hero-top"><div><p class="eyebrow"><span></span> KANE, PENNSYLVANIA</p><h1>Notary &amp; vehicle<br /><i>services, close to home.</i></h1></div><div class="hero-intro"><p>For documents, titles, registrations and more. Call ahead and schedule an appointment.</p><div class="actions"><a class="button button-dark" href={site.phoneLink}>Call {site.phone} <span>↗</span></a><a class="text-link" href={site.maps}>Get directions <span>↗</span></a></div></div></div>
+  <div class="landscape" role="img" aria-label="Placeholder for a licensed photograph of Kinzua Reservoir"><div class="landscape-inner"><span class="landscape-mark">321 <i>/</i> PA</span><p>Kinzua Reservoir<br /><small>PHOTO COMING SOON</small></p></div></div>
+  <div class="image-caption"><span>01 / NORTHWESTERN PENNSYLVANIA</span><span>KINZUA RESERVOIR <i>—</i> PHOTOGRAPH PENDING</span></div>
+</section>
+<div class="notice"><div class="wrap notice-inner"><p><strong>Planning a visit?</strong> Call ahead and schedule an appointment.</p><a href={site.phoneLink}>{site.phone} <span>↗</span></a></div></div>
+<section class="section wrap services" id="services"><div class="section-heading"><div><p class="eyebrow"><span></span> HOW WE CAN HELP</p><h2>Services for the<br /><i>things that move you.</i></h2></div><p>From a document that needs notarized to a vehicle that needs registered, start with a call to our office.</p></div><div class="service-list">{site.services.map(service => <article class="service"><span class="service-num">{service.number}</span><div><h3>{service.title}</h3><p class="service-tags">{service.items}</p></div><p>{service.description}</p><span class="service-arrow" aria-hidden="true">↗</span></article>)}</div></section>
+<section class="visit" id="visit"><div class="wrap visit-grid"><div><p class="eyebrow light"><span></span> BEFORE YOU VISIT</p><h2>A little preparation<br /><i>goes a long way.</i></h2></div><div class="visit-copy"><p class="lead">Every transaction is different.</p><p>What you need to bring depends on the service. Give us a call before your visit so you can ask about the documents needed for your transaction and schedule an appointment.</p><a class="button button-gold" href={site.phoneLink}>Call to schedule <span>↗</span></a><p class="small-note">A verified what-to-bring checklist can be added here after owner review.</p></div></div></section>
+<section class="section wrap about" id="about"><div><p class="eyebrow"><span></span> YOUR LOCAL NOTARY</p><h2>Meet Alena<br /><i>R. Goldsmith.</i></h2></div><div class="about-copy"><p class="lead">A local office for the paperwork that matters.</p><p>Alena R. Goldsmith is the notary public at 321 Notary, LLC in Kane, Pennsylvania. Contact the office to discuss the service you need and arrange your visit.</p><a class="text-link" href="#contact">Contact the office <span>↗</span></a></div><div class="about-mark" aria-hidden="true"><span>321</span><small>NOTARY PUBLIC<br />KANE, PA</small></div></section>
+<section class="section faq-section" id="faq"><div class="wrap faq-grid"><div><p class="eyebrow"><span></span> GOOD TO KNOW</p><h2>Frequently<br /><i>asked questions.</i></h2><p>Have another question? We’re happy to hear from you.</p><a class="text-link" href={site.phoneLink}>Call the office <span>↗</span></a></div><div class="faq-list">{faqs.map(([q, a]) => <details><summary>{q}<span aria-hidden="true">+</span></summary><p>{a}</p></details>)}</div></div></section>
+<section class="section wrap contact" id="contact"><div class="contact-heading"><p class="eyebrow"><span></span> GET IN TOUCH</p><h2>Let’s get it<br /><i>taken care of.</i></h2><p>Call ahead and schedule an appointment.</p><a class="button button-dark" href={site.phoneLink}>Call {site.phone} <span>↗</span></a></div><div class="contact-details"><div><h3>VISIT</h3><p>{site.address}<br />{site.city}, {site.state} {site.zip}</p><a class="text-link" href={site.maps}>Get directions <span>↗</span></a></div><div><h3>CONTACT</h3><p><a href={site.phoneLink}>{site.phone}</a><br /><a href={'mailto:' + site.email}>{site.email}</a></p></div></div><div class="hours"><h3>OFFICE HOURS</h3><dl>{site.hours.map(({day, time}) => <div><dt>{day}</dt><dd>{time}</dd></div>)}</dl><p>Call ahead to schedule.</p></div></section>
+</main>
+<footer><div class="wrap footer-inner"><div><a class="footer-brand" href="#top">321 NOTARY <small>LLC</small></a><p>132 Hubert Run Rd · Kane, PA 16735<br /><a href={site.phoneLink}>{site.phone}</a> · <a href={'mailto:' + site.email}>{site.email}</a></p></div><div><p>MON–WED &amp; FRI 10–5:30<br />SAT 9–12 · THU &amp; SUN CLOSED</p><nav aria-label="Footer navigation"><a href="#services">Services</a><a href="#visit">Visit</a><a href="#faq">FAQs</a><a href="#contact">Contact</a></nav></div></div><div class="wrap footer-bottom"><span>© {new Date().getFullYear()} 321 Notary, LLC</span><span>KANE, PENNSYLVANIA</span></div></footer>
+</body></html>

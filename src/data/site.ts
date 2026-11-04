@@ -1,0 +1,25 @@
+export const site = {
+  name: '321 Notary, LLC',
+  notary: 'Alena R. Goldsmith',
+  phone: '(814) 837-9448',
+  phoneLink: 'tel:+18148379448',
+  email: 'notaryoffice@verizon.net',
+  address: '132 Hubert Run Rd',
+  city: 'Kane', state: 'PA', zip: '16735',
+  maps: 'https://www.google.com/maps/dir/?api=1&destination=132+Hubert+Run+Rd%2C+Kane%2C+PA+16735',
+  hours: [
+    { day: 'Monday', time: '10:00 AM – 5:30 PM', schema: 'Mo' },
+    { day: 'Tuesday', time: '10:00 AM – 5:30 PM', schema: 'Tu' },
+    { day: 'Wednesday', time: '10:00 AM – 5:30 PM', schema: 'We' },
+    { day: 'Thursday', time: 'Closed' },
+    { day: 'Friday', time: '10:00 AM – 5:30 PM', schema: 'Fr' },
+    { day: 'Saturday', time: '9:00 AM – 12:00 PM', schema: 'Sa' },
+    { day: 'Sunday', time: 'Closed' },
+  ],
+  services: [
+    { number: '01', title: 'Notary Public', description: 'Notary public services with Alena R. Goldsmith. Call ahead to discuss your document and schedule a visit.', items: 'Notary public' },
+    { number: '02', title: 'Vehicle Titles, Plates & Registration', description: 'Help with vehicle title work, license plates and registrations, including instant registration renewals.', items: 'Titles  /  Plates  /  Registration' },
+    { number: '03', title: 'Boats, ATVs & Snowmobiles', description: 'Services for boats, ATVs and snowmobiles. Call to confirm the details for your transaction.', items: 'Boats  /  ATVs  /  Snowmobiles' },
+    { number: '04', title: 'Agency Services', description: 'Online PennDOT Agent, PFBC Agent and DCNR Dealer services. Contact the office to confirm your specific needs.', items: 'PennDOT  /  PFBC  /  DCNR' },
+  ],
+} as const;
