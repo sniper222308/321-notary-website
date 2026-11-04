@@ -8,3 +8,19 @@
 .visit-inner{grid-template-columns:1fr}.visit-inner>div{max-width:740px}
 
 .notary-information{border-top:1px solid var(--border);padding:36px 0;background:#f0f2ed}.notary-information h2{font-size:1.25rem;letter-spacing:0;margin-bottom:10px}.notary-information p{max-width:75ch;margin:0;line-height:1.65}
+
+/* Desktop refinement: preserve readable copy while giving the landscape room. */
+.wrap{width:min(100% - 48px,1200px)}
+.header-inner{min-height:120px;gap:24px}
+.header-emblem{display:block;width:100px;height:100px;object-fit:cover;border-radius:50%}
+.wordmark{gap:14px;flex-shrink:0}.wordmark small{font-size:.72rem}
+.header nav{gap:clamp(16px,1.8vw,28px)}.header nav a{font-size:1rem}
+.header-phone small{font-size:.7rem}
+.hero-inner{padding:54px 0 40px}.hero-figure{margin:0;min-width:0}
+.hero-photo{width:100%;height:auto;aspect-ratio:16/7;object-fit:cover;object-position:50% 100%}
+.hero-figure figcaption{font-size:.875rem;color:var(--muted);margin-top:8px}
+.info-inner span{font-size:1rem}.section-intro p,.service p,.about p{max-width:60ch}
+.service{gap:22px}.services-list{column-gap:clamp(35px,5vw,70px)}
+.footer-inner p,.footer-inner nav a{font-size:1rem}
+@media(max-width:1050px){.header-inner{min-height:0}.header nav{justify-content:flex-start;flex-wrap:wrap}.header-emblem{width:84px;height:84px}}
+@media(max-width:700px){.wrap{width:min(100% - 36px,1200px)}.header-emblem{width:70px;height:70px}.wordmark{gap:8px}.header nav{gap:4px 18px;overflow:visible}.header nav a{font-size:.95rem}.header-phone small{font-size:.65rem}.hero-inner{padding:38px 0 30px}.hero-photo{height:auto;aspect-ratio:16/9;object-position:60% 100%}.hero-figure figcaption{font-size:.85rem}.info-inner span{font-size:.95rem}}
