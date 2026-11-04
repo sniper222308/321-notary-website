@@ -12,12 +12,12 @@ Connect the GitHub repository with production branch `main`, build command `npm 
 
 ## Reservoir image
 
-The landscape is a labeled temporary illustration, not a photograph. Obtain a genuine Kinzua Reservoir panorama with appropriate commercial rights and retain its license and attribution. Add it as `src/assets/kinzua-reservoir.jpg`, import it in `src/pages/index.astro`, and replace the placeholder with Astro's `Image` component, responsive widths and meaningful alt text. Update the caption and remove placeholder CSS.
+The supplied Adobe Stock image is stored in `src/assets/kinzua-reservoir.jpg` and rendered using Astro's image optimization. Confirm the Adobe Stock license permits this website use and retain the licensing record before publication.
 
 ## Owner confirmation before launch
 
 - Confirm contact details, hours, appointment policy and services remain current, including which transactions the agency services cover.
-- Supply and approve a licensed reservoir image and any required credit; optionally provide an office photograph and approved introduction.
+- Confirm the reservoir image license and any required credit; optionally provide an office photograph and approved introduction.
 - Approve a transaction-specific what-to-bring checklist.
 - Have the owner and qualified counsel review Pennsylvania non-attorney notary disclaimer requirements and other regulatory details.
 - Confirm the production domain, connect Cloudflare Pages, set `SITE_URL`, update `robots.txt`, and verify Search Console.

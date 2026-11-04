@@ -17,9 +17,9 @@ export const site = {
     { day: 'Sunday', time: 'Closed' },
   ],
   services: [
-    { number: '01', title: 'Notary Public', description: 'Notary public services with Alena R. Goldsmith. Call ahead to discuss your document and schedule a visit.', items: 'Notary public' },
-    { number: '02', title: 'Vehicle Titles, Plates & Registration', description: 'Help with vehicle title work, license plates and registrations, including instant registration renewals.', items: 'Titles  /  Plates  /  Registration' },
-    { number: '03', title: 'Boats, ATVs & Snowmobiles', description: 'Services for boats, ATVs and snowmobiles. Call to confirm the details for your transaction.', items: 'Boats  /  ATVs  /  Snowmobiles' },
-    { number: '04', title: 'Agency Services', description: 'Online PennDOT Agent, PFBC Agent and DCNR Dealer services. Contact the office to confirm your specific needs.', items: 'PennDOT  /  PFBC  /  DCNR' },
+    { title: 'Notary Public', description: 'Notarization services for your documents with Alena R. Goldsmith.' },
+    { title: 'Vehicle Titles, Plates & Registration', description: 'Vehicle title work, license plates, registrations and instant registration renewals.' },
+    { title: 'Boats, ATVs & Snowmobiles', description: 'Registration-related services for boats, ATVs and snowmobiles.' },
+    { title: 'Agency Services', description: 'Online PennDOT Agent, PFBC Agent and DCNR Dealer services.' },
   ],
 } as const;
