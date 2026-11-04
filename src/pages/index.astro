@@ -24,7 +24,7 @@ const faqs = [
   ['What should I bring?', 'Documentation depends on your transaction. Please call ahead to ask what you will need to bring.'],
   ['How can I contact you?', 'Call (814) 837-9448 or email notaryoffice@verizon.net.'],
 ];
-// TODO: Owner and qualified counsel should review any required Pennsylvania non-attorney notary disclaimer and regulatory details before launch.
+// TODO: Owner and qualified counsel should review regulatory details before launch.
 ---
 <!doctype html>
 <html lang="en">
@@ -40,7 +40,7 @@ const faqs = [
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="header" id="top"><div class="wrap header-inner">
-  <a class="wordmark" href="#top" aria-label="321 Notary, LLC home"><svg viewBox="0 0 64 32" aria-hidden="true"><path d="M5 22h54l-3-9-10-2-7-7H22l-8 8-6 2-3 8Zm9-10h32M20 4l-4 8m20-8 6 8M13 22a4 4 0 1 0 8 0m22 0a4 4 0 1 0 8 0"/></svg><span><strong>321 NOTARY</strong><small>LLC · KANE, PA</small></span></a>
+  <a class="wordmark" href="#top" aria-label="321 Notary, LLC home"><span><strong>321 NOTARY</strong><small>LLC · KANE, PA</small></span></a>
   <nav aria-label="Main navigation"><a href="#services">Services</a><a href="#visit">Before You Visit</a><a href="#about">About</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></nav>
   <a class="header-phone" href={site.phoneLink}><small>CALL FOR AN APPOINTMENT</small>{site.phone}</a>
 </div></header>
@@ -52,6 +52,7 @@ const faqs = [
 <section class="section wrap about" id="about"><div><h2>Meet Alena</h2><p>Alena R. Goldsmith is the notary public at 321 Notary, LLC in Kane. The office provides notary, vehicle and recreational registration services.</p></div><Image class="about-badge" src={businessCard} alt="321 Notary, LLC badge featuring a yellow classic car" widths={[320, 480]} sizes="(max-width: 700px) 220px, 260px" /></section>
 <section class="faq-section" id="faq"><div class="wrap faq-grid"><div><h2>Frequently Asked Questions</h2><p>Find answers to common questions about visiting the office.</p></div><div class="faq-list">{faqs.map(([q, a]) => <details><summary>{q}<span aria-hidden="true">+</span></summary><p>{a}</p></details>)}</div></div></section>
 <section class="section wrap contact" id="contact"><div><h2>Contact 321 Notary</h2><div class="contact-details"><h3>Phone</h3><p><a href={site.phoneLink}>{site.phone}</a></p><h3>Address</h3><p>{site.address}<br />{site.city}, {site.state} {site.zip}<br /><a href={site.maps}>Get directions</a></p><h3>Email</h3><p><a href={'mailto:' + site.email}>{site.email}</a></p></div></div><div class="hours"><h3>Office Hours</h3><dl>{site.hours.map(({day, time}) => <div><dt>{day}</dt><dd>{time}</dd></div>)}</dl></div></section>
+<section class="notary-information"><div class="wrap"><h2>Important Notary Information</h2><p>I am not an attorney licensed to practice law in this Commonwealth. I am not allowed to draft legal records, give advice on legal matters, including immigration, or charge a fee for those activities.</p></div></section>
 </main>
 <footer><div class="wrap footer-inner"><div><strong>321 NOTARY, LLC</strong><p>132 Hubert Run Rd · Kane, PA 16735<br /><a href={site.phoneLink}>{site.phone}</a> · <a href={'mailto:' + site.email}>{site.email}</a></p></div><div><p>Mon–Wed &amp; Fri: 10 AM–5:30 PM<br />Saturday: 9 AM–12 PM<br />Thursday &amp; Sunday: Closed</p><nav aria-label="Footer navigation"><a href="#services">Services</a><a href="#visit">Before You Visit</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></nav></div></div><div class="wrap copyright">© {new Date().getFullYear()} 321 Notary, LLC</div></footer>
 </body></html>

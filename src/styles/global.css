@@ -6,3 +6,5 @@
 .hero-inner{grid-template-columns:1fr;gap:32px}.hero-copy{max-width:800px}.hero-photo{display:block;width:100%;height:clamp(280px,38vw,470px);object-fit:cover;object-position:50% 72%}@media(max-width:700px){.hero-photo{height:250px;object-position:60% 75%}}
 
 .visit-inner{grid-template-columns:1fr}.visit-inner>div{max-width:740px}
+
+.notary-information{border-top:1px solid var(--border);padding:36px 0;background:#f0f2ed}.notary-information h2{font-size:1.25rem;letter-spacing:0;margin-bottom:10px}.notary-information p{max-width:75ch;margin:0;line-height:1.65}
