@@ -3,7 +3,7 @@
 .about-badge{width:min(100%,260px);height:auto;justify-self:end}@media(max-width:700px){.about-badge{width:220px;justify-self:start}}
 
 /* Give the reservoir room to read as a landscape on every screen. */
-.hero-inner{grid-template-columns:1fr;gap:32px}.hero-copy{max-width:800px}.hero-photo{display:block;width:100%;height:clamp(280px,38vw,470px);object-fit:cover;object-position:50% 72%}@media(max-width:700px){.hero-photo{height:250px;object-position:60% 75%}}
+.hero-inner{grid-template-columns:1fr;gap:32px}.hero-copy{max-width:800px}.hero-photo{display:block;width:100%;height:clamp(280px,38vw,470px);object-fit:cover;object-position:50% 100%}@media(max-width:700px){.hero-photo{height:250px;object-position:60% 100%}}
 
 .visit-inner{grid-template-columns:1fr}.visit-inner>div{max-width:740px}
 
