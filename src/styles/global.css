@@ -24,3 +24,12 @@
 .footer-inner p,.footer-inner nav a{font-size:1rem}
 @media(max-width:1050px){.header-inner{min-height:0}.header nav{justify-content:flex-start;flex-wrap:wrap}.header-emblem{width:84px;height:84px}}
 @media(max-width:700px){.wrap{width:min(100% - 36px,1200px)}.header-emblem{width:70px;height:70px}.wordmark{gap:8px}.header nav{gap:4px 18px;overflow:visible}.header nav a{font-size:.95rem}.header-phone small{font-size:.65rem}.hero-inner{padding:38px 0 30px}.hero-photo{height:auto;aspect-ratio:16/9;object-position:60% 100%}.hero-figure figcaption{font-size:.85rem}.info-inner span{font-size:.95rem}}
+
+/* Keep the layout close to 1,200px while improving the hero's proportions. */
+.wrap{width:min(100% - 48px,1220px)}
+.header-location{font-size:.95rem;font-weight:700;white-space:nowrap}
+.hero-inner{padding:48px 0 38px;gap:26px}
+.hero-copy h1{font-size:clamp(2.5rem,3.4vw,3rem);max-width:24ch}
+.hero-copy>p:not(.location){max-width:65ch;line-height:1.6}
+.hero-copy .actions{margin-top:22px}
+@media(max-width:700px){.wrap{width:min(100% - 36px,1220px)}.header-location{font-size:.85rem}.hero-inner{padding:38px 0 30px;gap:25px}.hero-copy h1{font-size:clamp(2.15rem,9vw,2.5rem)}}
