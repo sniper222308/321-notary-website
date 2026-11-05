@@ -1,29 +1,27 @@
 ---
-import { site } from '../data/site';
+import { site, displayHours } from '../data/site';
+import about from '../data/about.json';
+import faqs from '../data/faqs.json';
+import photos from '../data/photos.json';
+import announcement from '../data/announcement.json';
 import { Image } from 'astro:assets';
 import businessCard from '../assets/business-card.png';
-import reservoir from '../assets/kinzua-reservoir.jpg';
 import '../styles/global.css';
 const title = '321 Notary, LLC | Notary, Titles & Registration in Kane, PA';
 const description = 'Notary public, vehicle titles, plates and registration services in Kane, Pennsylvania. Call 321 Notary, LLC to schedule an appointment.';
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
 const jsonLd = {
   '@context': 'https://schema.org', '@type': 'Notary', name: site.name,
-  ...(Astro.site ? { url: Astro.site.href } : {}), telephone: '+18148379448', email: site.email,
+  ...(Astro.site ? { url: Astro.site.href } : {}), telephone: site.phone, email: site.email,
   address: { '@type': 'PostalAddress', streetAddress: site.address, addressLocality: site.city, addressRegion: site.state, postalCode: site.zip, addressCountry: 'US' },
-  openingHoursSpecification: [
-    { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Friday'], opens: '10:00', closes: '17:30' },
-    { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Saturday', opens: '09:00', closes: '12:00' },
-  ],
+  openingHoursSpecification: site.hours.filter(day => !day.closed).map(day => ({
+    '@type': 'OpeningHoursSpecification', dayOfWeek: day.day, opens: day.opens, closes: day.closes,
+  })),
 };
-const faqs = [
-  ['Are appointments required?', 'Please call ahead and schedule an appointment.'],
-  ['What are your business hours?', 'Monday through Wednesday and Friday, 10:00 AM–5:30 PM; Saturday, 9:00 AM–12:00 PM. Closed Thursday and Sunday.'],
-  ['Where are you located?', '132 Hubert Run Rd, Kane, PA 16735.'],
-  ['What services do you provide?', 'Notary public services, vehicle title work, license plates, registrations and instant registration renewals, as well as boat, ATV and snowmobile services. The office is an Online PennDOT Agent, PFBC Agent and DCNR Dealer. Call to confirm your specific transaction.'],
-  ['What should I bring?', 'Documentation depends on your transaction. Proof of insurance and photo ID are commonly forgotten, so please bring them when needed. Call ahead to ask what you will need.'],
-  ['How can I contact you?', 'Call (814) 837-9448 or email notaryoffice@verizon.net.'],
-];
+const hoursText = site.hours.map(day => `${day.day}: ${displayHours(day)}`).join('; ');
+const answer = (text: string) => text.replace(/\{(hours|address|phone|email)\}/g, (_, key: string) => ({
+  hours: hoursText, address: `${site.address}, ${site.city}, ${site.state} ${site.zip}`, phone: site.phone, email: site.email,
+}[key] || ''));
 // TODO: Owner and qualified counsel should review regulatory details before launch.
 ---
 <!doctype html>
@@ -40,19 +38,20 @@ const faqs = [
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="header" id="top"><div class="wrap header-inner">
-  <a class="wordmark" href="#top" aria-label="321 Notary, LLC home"><Image class="header-emblem" src={businessCard} alt="" width={240} loading="eager" /><span class="header-location">Kane, PA</span></a>
+  <a class="wordmark" href="#top" aria-label={`${site.name} home`}><Image class="header-emblem" src={businessCard} alt="" width={240} loading="eager" /><span class="header-location">Kane, PA</span></a>
   <nav aria-label="Main navigation"><a href="#services">Services</a><a href="#visit">Before You Visit</a><a href="#about">About</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></nav>
   <a class="header-phone" href={site.phoneLink}><small>CALL FOR AN APPOINTMENT</small>{site.phone}</a>
 </div></header>
 <main id="main">
-<section class="hero"><div class="wrap hero-inner"><div class="hero-copy"><p class="location">Kane, Pennsylvania</p><h1>Notary, Title &amp; Registration Services in Kane, PA</h1><p>Need title work, a registration renewal, or a document notarized? 321 Notary offers these services in Kane, Pennsylvania.</p><div class="actions"><a class="button button-yellow" href={site.phoneLink}>Call Now: {site.phone}</a><a class="directions" href={site.maps}>Get Directions</a></div></div><figure class="hero-figure"><Image class="hero-photo" src={reservoir} alt="Kinzua Reservoir surrounded by forested hills in autumn, Pennsylvania." widths={[640, 960, 1280, 1600, 1920]} sizes="(max-width: 700px) calc(100vw - 36px), (max-width: 1268px) calc(100vw - 48px), 1220px" format="webp" loading="eager" fetchpriority="high" /><figcaption>Kinzua Reservoir, Pennsylvania</figcaption></figure></div></section>
-<div class="info-strip"><div class="wrap info-inner"><p><strong>Appointments</strong><span>Please call ahead to schedule.</span></p><p><strong>Kane, Pennsylvania</strong><span>132 Hubert Run Rd</span></p><p><strong>Office hours</strong><span>Mon–Wed &amp; Fri 10–5:30 · Sat 9–12</span></p></div></div>
+{announcement.enabled && announcement.message.trim() && <div class="announcement"><div class="wrap">{announcement.message}</div></div>}
+<section class="hero"><div class="wrap hero-inner"><div class="hero-copy"><p class="location">Kane, Pennsylvania</p><h1>Notary, Title &amp; Registration Services in Kane, PA</h1><p>Need title work, a registration renewal, or a document notarized? {site.name} offers these services in {site.city}, Pennsylvania.</p><div class="actions"><a class="button button-yellow" href={site.phoneLink}>Call Now: {site.phone}</a><a class="directions" href={site.maps}>Get Directions</a></div></div><figure class="hero-figure"><img class="hero-photo" src={photos.hero} alt="Kinzua Reservoir surrounded by forested hills in autumn, Pennsylvania." loading="eager" fetchpriority="high" /><figcaption>Kinzua Reservoir, Pennsylvania</figcaption></figure></div></section>
+<div class="info-strip"><div class="wrap info-inner"><p><strong>Appointments</strong><span>{site.appointment}</span></p><p><strong>Kane, Pennsylvania</strong><span>{site.address}</span></p><p><strong>Office hours</strong><span>{hoursText}</span></p></div></div>
 <section class="section wrap" id="services"><div class="section-intro"><h2>How We Can Help</h2><p>Notary and registration services, all in one local office.</p></div><div class="services-list">{site.services.map((service, index) => <article class="service"><div class="service-icon" aria-hidden="true">{index === 0 ? <svg viewBox="0 0 48 48"><path d="M11 5h19l7 7v31H11zM29 5v9h8M17 22h14M17 28h14M17 34h9"/></svg> : index === 1 ? <svg viewBox="0 0 48 48"><path d="m7 29 3-10 7-3 4-7h13l5 8 4 3 2 9v6H7zM14 19h25M12 35v3m28-3v3M14 29h4m13 0h4"/></svg> : index === 2 ? <svg viewBox="0 0 48 48"><path d="M5 30h38l-5 8H12zM24 7v23M24 8 12 26h12M27 13l9 13h-9"/></svg> : <svg viewBox="0 0 48 48"><path d="M7 12h34v27H7zM7 19h34M14 9v6m20-6v6M14 26h8m-8 6h19"/></svg>}</div><div><h3>{service.title}</h3><p>{service.description}</p></div></article>)}</div></section>
 <section class="visit" id="visit"><div class="wrap visit-inner"><div><h2>Give Us a Call Before Stopping By</h2><p>Depending on what you’re having done, you may need to bring certain paperwork or identification. Call ahead so we can help you prepare for your visit and schedule an appointment.</p><a class="button button-yellow" href={site.phoneLink}>Call to Schedule</a></div></div></section>
-<section class="section wrap about" id="about"><div><h2>Meet Alena</h2><p>Alena R. Goldsmith is the notary public at 321 Notary, LLC in Kane. The office provides notary, vehicle and recreational registration services.</p></div><Image class="about-badge" src={businessCard} alt="321 Notary, LLC badge featuring a yellow classic car" widths={[320, 480]} sizes="(max-width: 700px) 220px, 260px" /></section>
-<section class="faq-section" id="faq"><div class="wrap faq-grid"><div><h2>Frequently Asked Questions</h2><p>Find answers to common questions about visiting the office.</p></div><div class="faq-list">{faqs.map(([q, a]) => <details><summary>{q}<span aria-hidden="true">+</span></summary><p>{a}</p></details>)}</div></div></section>
-<section class="section wrap contact" id="contact"><div><h2>Contact 321 Notary</h2><div class="contact-details"><h3>Phone</h3><p><a href={site.phoneLink}>{site.phone}</a></p><h3>Address</h3><p>{site.address}<br />{site.city}, {site.state} {site.zip}<br /><a href={site.maps}>Get directions</a></p><h3>Email</h3><p><a href={'mailto:' + site.email}>{site.email}</a></p></div></div><div class="hours"><h3>Office Hours</h3><dl>{site.hours.map(({day, time}) => <div><dt>{day}</dt><dd>{time}</dd></div>)}</dl></div></section>
+<section class="section wrap about" id="about"><div><h2>Meet Alena</h2><p>{about.text}</p></div>{about.photo ? <img class="about-badge" src={about.photo} alt="Alena Goldsmith" /> : <Image class="about-badge" src={businessCard} alt="321 Notary, LLC badge featuring a yellow classic car" widths={[320, 480]} sizes="(max-width: 700px) 220px, 260px" />}</section>
+<section class="faq-section" id="faq"><div class="wrap faq-grid"><div><h2>Frequently Asked Questions</h2><p>Find answers to common questions about visiting the office.</p></div><div class="faq-list">{faqs.items.map(({question, answer: text}) => <details><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer(text)}</p></details>)}</div></div></section>
+<section class="section wrap contact" id="contact"><div><h2>Contact {site.name}</h2><div class="contact-details"><h3>Phone</h3><p><a href={site.phoneLink}>{site.phone}</a></p><h3>Address</h3><p>{site.address}<br />{site.city}, {site.state} {site.zip}<br /><a href={site.maps}>Get directions</a></p><h3>Email</h3><p><a href={'mailto:' + site.email}>{site.email}</a></p></div></div><div class="hours"><h3>Office Hours</h3><dl>{site.hours.map(day => <div><dt>{day.day}</dt><dd>{displayHours(day)}</dd></div>)}</dl></div></section>
 <section class="notary-information"><div class="wrap"><h2>Important Notary Information</h2><p>I am not an attorney licensed to practice law in this Commonwealth. I am not allowed to draft legal records, give advice on legal matters, including immigration, or charge a fee for those activities.</p></div></section>
 </main>
-<footer><div class="wrap footer-inner"><div><strong>321 NOTARY, LLC</strong><p>132 Hubert Run Rd · Kane, PA 16735<br /><a href={site.phoneLink}>{site.phone}</a> · <a href={'mailto:' + site.email}>{site.email}</a></p></div><div><p>Mon–Wed &amp; Fri: 10 AM–5:30 PM<br />Saturday: 9 AM–12 PM<br />Thursday &amp; Sunday: Closed</p><nav aria-label="Footer navigation"><a href="#services">Services</a><a href="#visit">Before You Visit</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></nav></div></div><div class="wrap copyright">© {new Date().getFullYear()} 321 Notary, LLC</div></footer>
+<footer><div class="wrap footer-inner"><div><strong>{site.name.toUpperCase()}</strong><p>{site.address} · {site.city}, {site.state} {site.zip}<br /><a href={site.phoneLink}>{site.phone}</a> · <a href={'mailto:' + site.email}>{site.email}</a></p></div><div><p>{hoursText}</p><nav aria-label="Footer navigation"><a href="#services">Services</a><a href="#visit">Before You Visit</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></nav></div></div><div class="wrap copyright">© {new Date().getFullYear()} {site.name}</div></footer>
 </body></html>

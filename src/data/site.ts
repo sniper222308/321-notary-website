@@ -1,25 +1,17 @@
+import business from './business.json';
+import hours from './hours.json';
+import services from './services.json';
+
+const days = Object.entries(hours).map(([day, value]) => ({ day: day[0].toUpperCase() + day.slice(1), ...value }));
+const formatTime = (time: string) => {
+  const [hour, minute] = time.split(':').map(Number);
+  return `${hour % 12 || 12}:${String(minute).padStart(2, '0')} ${hour < 12 ? 'AM' : 'PM'}`;
+};
+export const displayHours = (day: typeof days[number]) => day.closed ? 'Closed' : `${formatTime(day.opens)} – ${formatTime(day.closes)}`;
 export const site = {
-  name: '321 Notary, LLC',
-  notary: 'Alena R. Goldsmith',
-  phone: '(814) 837-9448',
-  phoneLink: 'tel:+18148379448',
-  email: 'notaryoffice@verizon.net',
-  address: '132 Hubert Run Rd',
-  city: 'Kane', state: 'PA', zip: '16735',
-  maps: 'https://www.google.com/maps/dir/?api=1&destination=132+Hubert+Run+Rd%2C+Kane%2C+PA+16735',
-  hours: [
-    { day: 'Monday', time: '10:00 AM – 5:30 PM', schema: 'Mo' },
-    { day: 'Tuesday', time: '10:00 AM – 5:30 PM', schema: 'Tu' },
-    { day: 'Wednesday', time: '10:00 AM – 5:30 PM', schema: 'We' },
-    { day: 'Thursday', time: 'Closed' },
-    { day: 'Friday', time: '10:00 AM – 5:30 PM', schema: 'Fr' },
-    { day: 'Saturday', time: '9:00 AM – 12:00 PM', schema: 'Sa' },
-    { day: 'Sunday', time: 'Closed' },
-  ],
-  services: [
-    { title: 'Notary Public', description: 'Notarization services for your documents with Alena R. Goldsmith.' },
-    { title: 'Vehicle Titles, Plates & Registration', description: 'Vehicle title work, license plates, registrations and instant registration renewals.' },
-    { title: 'Boats, ATVs & Snowmobiles', description: 'Registration-related services for boats, ATVs and snowmobiles.' },
-    { title: 'Agency Services', description: 'Online PennDOT Agent, PFBC Agent and DCNR Dealer services.' },
-  ],
-} as const;
+  ...business,
+  phoneLink: `tel:${business.phone.replace(/[^\d+]/g, '')}`,
+  maps: `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(`${business.address}, ${business.city}, ${business.state} ${business.zip}`)}`,
+  hours: days,
+  services: services.services,
+};

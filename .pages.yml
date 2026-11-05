@@ -1,0 +1,274 @@
+media:
+  input: public/uploads
+  output: /uploads
+  categories: [image]
+  rename: safe
+settings:
+  hide: true
+content:
+  - name: business
+    label: Business Information
+    type: file
+    path: src/data/business.json
+    format: json
+    operations: { delete: false, rename: false }
+    fields:
+      - name: name
+        label: Business name
+        type: string
+        required: true
+      - name: address
+        label: Street address
+        type: string
+        required: true
+      - name: city
+        label: City
+        type: string
+        required: true
+      - name: state
+        label: State
+        type: string
+        required: true
+      - name: zip
+        label: ZIP code
+        type: string
+        required: true
+      - name: phone
+        label: Phone number
+        type: string
+        required: true
+      - name: email
+        label: Email address
+        type: string
+        required: true
+      - name: appointment
+        label: Appointment instructions
+        type: string
+        required: true
+  - name: hours
+    label: Business Hours
+    type: file
+    path: src/data/hours.json
+    format: json
+    operations: { delete: false, rename: false }
+    fields:
+      - name: monday
+        label: Monday
+        type: object
+        fields:
+          - name: closed
+            label: Closed
+            type: boolean
+          - name: opens
+            label: Opening time
+            type: string
+            required: true
+            description: Use 24-hour time, for example 09:00 or 17:30. Keep a time here even when closed.
+            pattern: '^([01][0-9]|2[0-3]):[0-5][0-9]$'
+          - name: closes
+            label: Closing time
+            type: string
+            required: true
+            description: Use 24-hour time, for example 09:00 or 17:30.
+            pattern: '^([01][0-9]|2[0-3]):[0-5][0-9]$'
+      - name: tuesday
+        label: Tuesday
+        type: object
+        fields:
+          - name: closed
+            label: Closed
+            type: boolean
+          - name: opens
+            label: Opening time
+            type: string
+            required: true
+            description: Use 24-hour time, for example 09:00 or 17:30. Keep a time here even when closed.
+            pattern: '^([01][0-9]|2[0-3]):[0-5][0-9]$'
+          - name: closes
+            label: Closing time
+            type: string
+            required: true
+            description: Use 24-hour time, for example 09:00 or 17:30.
+            pattern: '^([01][0-9]|2[0-3]):[0-5][0-9]$'
+      - name: wednesday
+        label: Wednesday
+        type: object
+        fields:
+          - name: closed
+            label: Closed
+            type: boolean
+          - name: opens
+            label: Opening time
+            type: string
+            required: true
+            description: Use 24-hour time, for example 09:00 or 17:30. Keep a time here even when closed.
+            pattern: '^([01][0-9]|2[0-3]):[0-5][0-9]$'
+          - name: closes
+            label: Closing time
+            type: string
+            required: true
+            description: Use 24-hour time, for example 09:00 or 17:30.
+            pattern: '^([01][0-9]|2[0-3]):[0-5][0-9]$'
+      - name: thursday
+        label: Thursday
+        type: object
+        fields:
+          - name: closed
+            label: Closed
+            type: boolean
+          - name: opens
+            label: Opening time
+            type: string
+            required: true
+            description: Use 24-hour time, for example 09:00 or 17:30. Keep a time here even when closed.
+            pattern: '^([01][0-9]|2[0-3]):[0-5][0-9]$'
+          - name: closes
+            label: Closing time
+            type: string
+            required: true
+            description: Use 24-hour time, for example 09:00 or 17:30.
+            pattern: '^([01][0-9]|2[0-3]):[0-5][0-9]$'
+      - name: friday
+        label: Friday
+        type: object
+        fields:
+          - name: closed
+            label: Closed
+            type: boolean
+          - name: opens
+            label: Opening time
+            type: string
+            required: true
+            description: Use 24-hour time, for example 09:00 or 17:30. Keep a time here even when closed.
+            pattern: '^([01][0-9]|2[0-3]):[0-5][0-9]$'
+          - name: closes
+            label: Closing time
+            type: string
+            required: true
+            description: Use 24-hour time, for example 09:00 or 17:30.
+            pattern: '^([01][0-9]|2[0-3]):[0-5][0-9]$'
+      - name: saturday
+        label: Saturday
+        type: object
+        fields:
+          - name: closed
+            label: Closed
+            type: boolean
+          - name: opens
+            label: Opening time
+            type: string
+            required: true
+            description: Use 24-hour time, for example 09:00 or 17:30. Keep a time here even when closed.
+            pattern: '^([01][0-9]|2[0-3]):[0-5][0-9]$'
+          - name: closes
+            label: Closing time
+            type: string
+            required: true
+            description: Use 24-hour time, for example 09:00 or 17:30.
+            pattern: '^([01][0-9]|2[0-3]):[0-5][0-9]$'
+      - name: sunday
+        label: Sunday
+        type: object
+        fields:
+          - name: closed
+            label: Closed
+            type: boolean
+          - name: opens
+            label: Opening time
+            type: string
+            required: true
+            description: Use 24-hour time, for example 09:00 or 17:30. Keep a time here even when closed.
+            pattern: '^([01][0-9]|2[0-3]):[0-5][0-9]$'
+          - name: closes
+            label: Closing time
+            type: string
+            required: true
+            description: Use 24-hour time, for example 09:00 or 17:30.
+            pattern: '^([01][0-9]|2[0-3]):[0-5][0-9]$'
+  - name: services
+    label: Services
+    type: file
+    path: src/data/services.json
+    format: json
+    operations: { delete: false, rename: false }
+    fields:
+      - name: services
+        label: Services
+        type: object
+        list:
+          collapsible:
+            summary: "{title}"
+        fields:
+          - name: title
+            label: Service name
+            type: string
+            required: true
+          - name: description
+            label: Short description
+            type: text
+            required: true
+  - name: about
+    label: About
+    type: file
+    path: src/data/about.json
+    format: json
+    operations: { delete: false, rename: false }
+    fields:
+      - name: text
+        label: About Alena
+        type: text
+        required: true
+      - name: photo
+        label: Owner photograph
+        type: image
+        description: Optional. Leave empty to show the existing business badge.
+  - name: faqs
+    label: Frequently Asked Questions
+    type: file
+    path: src/data/faqs.json
+    format: json
+    operations: { delete: false, rename: false }
+    fields:
+      - name: items
+        label: Questions and answers
+        type: object
+        description: Add, remove, or drag questions to reorder them. The words in braces insert current business information automatically; keep them where useful.
+        list:
+          collapsible:
+            summary: "{question}"
+        fields:
+          - name: question
+            label: Question
+            type: string
+            required: true
+          - name: answer
+            label: Answer
+            type: text
+            required: true
+            description: Use {hours}, {address}, {phone}, or {email} to insert current information automatically.
+  - name: photos
+    label: Photos
+    type: file
+    path: src/data/photos.json
+    format: json
+    operations: { delete: false, rename: false }
+    fields:
+      - name: hero
+        label: Kinzua Reservoir hero photograph
+        type: image
+        required: true
+        description: Choose a wide landscape image of Kinzua Reservoir.
+  - name: announcement
+    label: Announcements
+    type: file
+    path: src/data/announcement.json
+    format: json
+    operations: { delete: false, rename: false }
+    fields:
+      - name: enabled
+        label: Show announcement
+        type: boolean
+      - name: message
+        label: Announcement message
+        type: text
+        description: A short notice, such as a temporary closure. Turn on the switch above to show it.

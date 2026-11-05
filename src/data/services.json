@@ -1,0 +1,20 @@
+{
+  "services": [
+    {
+      "title": "Notary Public",
+      "description": "Notarization services for your documents with Alena R. Goldsmith."
+    },
+    {
+      "title": "Vehicle Titles, Plates & Registration",
+      "description": "Vehicle title work, license plates, registrations and instant registration renewals."
+    },
+    {
+      "title": "Boats, ATVs & Snowmobiles",
+      "description": "Registration-related services for boats, ATVs and snowmobiles."
+    },
+    {
+      "title": "Agency Services",
+      "description": "Online PennDOT Agent, PFBC Agent and DCNR Dealer services."
+    }
+  ]
+}

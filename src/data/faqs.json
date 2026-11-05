@@ -1,0 +1,28 @@
+{
+  "items": [
+    {
+      "question": "Are appointments required?",
+      "answer": "Please call ahead and schedule an appointment."
+    },
+    {
+      "question": "What are your business hours?",
+      "answer": "{hours}"
+    },
+    {
+      "question": "Where are you located?",
+      "answer": "{address}"
+    },
+    {
+      "question": "What services do you provide?",
+      "answer": "Notary public services, vehicle title work, license plates, registrations and instant registration renewals, as well as boat, ATV and snowmobile services. The office is an Online PennDOT Agent, PFBC Agent and DCNR Dealer. Call to confirm your specific transaction."
+    },
+    {
+      "question": "What should I bring?",
+      "answer": "Documentation depends on your transaction. Proof of insurance and photo ID are commonly forgotten, so please bring them when needed. Call ahead to ask what you will need."
+    },
+    {
+      "question": "How can I contact you?",
+      "answer": "Call {phone} or email {email}."
+    }
+  ]
+}
