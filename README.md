@@ -2,6 +2,8 @@
 
 A website for 321 Notary, LLC in Kane, Pennsylvania. It provides information about notary, vehicle title, registration, and recreational vehicle services, along with office hours and contact details. Built with Astro, TypeScript, and vanilla CSS.
 
+The website includes a legal disclosure concerning the notary’s non-attorney status. The Kinzua Reservoir photograph is licensed through Adobe Stock.
+
 ## Deploy with Cloudflare Pages
 
 1. Connect the `sniper222308/321-notary-website` GitHub repository to Cloudflare Pages.
